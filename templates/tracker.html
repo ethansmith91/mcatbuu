@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<script>
+var interval; 
+var current;
+function initTime()
+{
+	current = 0;
+}
+function startTime()
+{
+	interval = setInterval(function(){incrementTime()},1000);
+}
+function incrementTime()
+{
+	s = current % 60;
+        m = Math.floor(s/60);
+        h = Math.floor(m/60);
+        v = h+":"+m+":"+current;
+        document.getElementById('timeDisplay').value=v;
+	current++;
+}
+function stopTime()
+{
+	clearInterval(interval);
+}
+</script>
+<head>
+	<p> Tracker System </p>
+</head>
+
+<body onload="initTime()">
+	<form name="timeTracker" action="">
+		<input id="timeDisplay" type="text" name="timeDisplay" class="field left" readonly>
+		<input type="button" name="start" value="START" onclick="startTime()"/>	
+		<input type="button" name="stop" value="STOP" onclick="stopTime()"/>
+	</form>
+</body>

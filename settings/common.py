@@ -135,6 +135,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+
+	#Allauth plugin
+	'allauth.account.context_processors.account',
+	'allauth.socialaccount.context_processors.socialaccount',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
@@ -165,6 +169,15 @@ MIDDLEWARE_CLASSES = (
 )
 ########## END MIDDLEWARE CONFIGURATION
 
+########## Authentication Configuration for Allauth
+
+AUTHENTICATION_BACKENDS = (
+	# Needed to login by username in Django admin, regardless of allatuh
+	'django.contrib.auth.backends.ModelBackend',
+	
+	#allatuh specific authentication methods, such as log in by email
+	'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 ########## URL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -188,6 +201,20 @@ DJANGO_APPS = (
     # Admin panel and documentation:
     'django.contrib.admin',
     'django.contrib.admindocs',
+
+    # Dajax:
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.sites',
+	'dajaxice',
+	'dajax',
+	
+	#allauth
+	'allauth',
+	'allauth.account',
+	'allauth.socialaccount',
+	'allauth.socialaccount.providers.facebook',
 )
 
 THIRD_PARTY_APPS = (
